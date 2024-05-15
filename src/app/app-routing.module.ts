@@ -35,7 +35,7 @@ const routes : Routes = [
 
   {
     path: '**',
-    redirectTo: 'book'   // ahora lo dirijimos al countries para que me mande aa by capital
+    redirectTo: 'books'   // ahora lo dirijimos al countries para que me mande aa by capital
   }
 ]
 
