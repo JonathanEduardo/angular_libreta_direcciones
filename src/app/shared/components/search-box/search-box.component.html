@@ -1,0 +1,22 @@
+<!-- con enter -->
+
+<!-- <input type="text"
+[placeholder]="placeholder"
+class="form-control"
+(keyup.enter)="emitValue(txtBuscar.value)"
+
+#txtBuscar
+>   -->
+
+
+<input type="text"
+[placeholder]="placeholder"
+[value]="initialValue"
+class="form-control"
+(keyup)="onKeyPress(txtBuscar.value)"
+
+#txtBuscar
+>
+
+<!-- creamos un key up llamamos la funcion y mandmaos el valor del mismo  input medinbte su referencia # -->
+
