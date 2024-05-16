@@ -8,6 +8,11 @@ import { CountryPageComponent } from './pages/country-page/country-page.componen
 
 const routes :Routes = [
   {
+    path: 'by-country',
+    component: ByCountryPageComponent
+  },
+
+  {
     path: 'by-capital',
     component: ByCapitalPageComponent,
   },

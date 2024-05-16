@@ -14,7 +14,7 @@ const routes :Routes = [
 
   {
     path: '**',
-    redirectTo: 'by-address'
+    redirectTo: 'address'
   }
 ]
 
@@ -27,4 +27,4 @@ const routes :Routes = [
   providers: [],
 })
 
-export class CountriesRoutingModule { }
+export class AddressRoutingModule { }

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddressDetailsComponent } from './address-details/address-details.component';
-
+import { AddressDetailsComponent } from './pages/address-details/address-details.component';
+import { AddressRoutingModule } from './address-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -9,7 +10,10 @@ import { AddressDetailsComponent } from './address-details/address-details.compo
     AddressDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    // importamos las rutas child
+    AddressRoutingModule
   ]
 })
 export class AddressBookModule { }

@@ -16,10 +16,7 @@ const routes : Routes = [
   },
 
 
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
+
 
 
   {
@@ -28,14 +25,14 @@ const routes : Routes = [
   },
 
   {
-    path: 'book',
+    path: 'contacts',
     loadChildren: () => import('./address-book/address-book.module').then( m => m.AddressBookModule )   //importamos el module principal donde tenemos ya importado el routin module
   },
 
 
   {
     path: '**',
-    redirectTo: 'books'   // ahora lo dirijimos al countries para que me mande aa by capital
+    redirectTo: 'book'   // ahora lo dirijimos al countries para que me mande aa by capital
   }
 ]
 
