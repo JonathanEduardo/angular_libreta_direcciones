@@ -9,7 +9,7 @@ import { Contact } from '../interfaces/contacts.interface';
 export class AddressBookService {
 
 
-  private apiURL : string = '127.0.0.1:8000/api/contacts';
+  private apiURL: string = 'http://127.0.0.1:8000/api/contacts';
   private apiKey = 'ccaf5c9a22e854856d0c5b1b96c81e851bafb288'; // Aquí debes reemplazar con tu clave API
 
 
@@ -21,11 +21,9 @@ export class AddressBookService {
 
 
     const headers = new HttpHeaders().set('x-api-key', this.apiKey);
-
-    return this.http.get<Contact[]>(url, {headers: headers})
-    .pipe(
-      catchError(erro => of([])),
-      delay(2002)
+    return this.http.get<Contact[]>(url, { headers: headers }).pipe(
+      catchError(error => of([])),
+      // delay(2000)
     );
   }
 
@@ -34,9 +32,7 @@ export class AddressBookService {
 
   getAllContact(term : string) : Observable<Contact[]>{
 
-    const url : string = this.apiURL;
-
-    return this.getContact(url)
+    return this.getContact(this.apiURL)
 
   }
 

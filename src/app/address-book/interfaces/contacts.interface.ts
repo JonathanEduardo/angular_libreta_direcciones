@@ -1,6 +1,6 @@
 export interface Contact {
   current_page:   number;
-  data:           Datum[];
+  data:           data[];
   first_page_url: string;
   from:           number;
   last_page:      number;
@@ -9,12 +9,12 @@ export interface Contact {
   next_page_url:  string;
   path:           string;
   per_page:       number;
-  prev_page_url:  null;
+  prev_page_url:  null | string;
   to:             number;
   total:          number;
 }
 
-export interface Datum {
+export interface data {
   id:         number;
   name:       string;
   created_at: Date;

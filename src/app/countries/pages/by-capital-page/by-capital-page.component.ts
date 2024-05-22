@@ -41,6 +41,8 @@ export class ByCapitalPageComponent implements OnInit {
 
 
 
+
+
   }
 
 
