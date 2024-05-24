@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AddressBookService } from '../../services/addressBook.service';
-import { Contact, data } from '../../interfaces/contacts.interface';
+import { Contact} from '../../interfaces/contacts.interface';
 @Component({
   selector: 'app-address-details',
   templateUrl: './address-details.component.html',
@@ -22,8 +22,11 @@ export class AddressDetailsComponent implements OnInit {
     this.AddressBookService.getAllContact("term")
     .subscribe( contacts=> {
       this.contacts = contacts;
+      console.log(this.contacts[0].data.data  );
 
-      console.log(this.contacts[0].data  );
+
+
+      //console.log(this.contacts[0].data  );
 
     });
 

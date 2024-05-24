@@ -21,7 +21,8 @@ export class AddressBookService {
 
 
     const headers = new HttpHeaders().set('x-api-key', this.apiKey);
-    return this.http.get<Contact[]>(url, { headers: headers }).pipe(
+    return this.http.get<Contact[]>(url, { headers: headers })
+    .pipe(
       catchError(error => of([])),
       // delay(2000)
     );

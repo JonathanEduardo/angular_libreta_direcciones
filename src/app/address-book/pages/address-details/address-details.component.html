@@ -10,7 +10,7 @@
 
 
 <!-- contact-list.component.html -->
-<div *ngIf="contacts.length > 0">
+<div *ngIf=" contacts.length > 0">
   <table>
     <thead>
       <tr>
@@ -21,8 +21,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contact of contacts[0].data">
+      <tr *ngFor="let contact of this.contacts[0].data.data">
+        <td>{{ contact.id }}</td>
         <td>{{ contact.name }}</td>
+        <td>{{ contact.created_at }}</td>
+        <td>{{ contact.updated_at }}</td>
+
 
       </tr>
     </tbody>
