@@ -18,6 +18,7 @@
         <th>Name</th>
         <th>Created At</th>
         <th>Updated At</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +27,12 @@
         <td>{{ contact.name }}</td>
         <td>{{ contact.created_at }}</td>
         <td>{{ contact.updated_at }}</td>
-
+        <td class="flex flex-row gap-2">
+          <button class="bg-blue-600 text-white  rounded-sm px-2 py-.5"> Detalles</button>
+          <button class="bg-indigo-600 text-white  rounded-sm px-2 py-.5"> Agregar </button>
+          <button class="bg-red-600 text-white rounded-sm px-2 py-.5" (click)="detailId( contact.id  )"> Eliminar
+          </button>
+        </td>
 
       </tr>
     </tbody>
@@ -36,3 +42,140 @@
   No contacts found.
 </div>
 
+
+<div *ngIf="modal">
+  <!-- Modal  {{contactDetail.data.id}} -->
+  <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 "
+    id="modal">
+    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+
+        <div>
+          Direcciones
+
+
+          <table class="text-left w-full text-sm">
+            <thead class="bg-black flex text-white w-full">
+              <tr class="flex w-full mb-1">
+                <th class="p-1.5 w-fit mx-2">Id</th>
+                <th class="p-1.5 w-1/4">Address</th>
+                <th class="p-1.5 w-1/4">Creado</th>
+                <th class="p-1.5 w-1/4">Actualizado</th>
+              </tr>
+
+            </thead>
+            <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" style="height: 50vh;">
+              <tr *ngFor="let address of contactDetail.data.addresses" class="flex w-full mb-4 border-b-2">
+                <td class="p-1.5 w-fit mx-2">
+                  {{address.id}}
+                </td>
+
+                <td class="p-1.5 w-1/4">
+                  {{address.address}}
+                </td>
+
+
+                <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
+                <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
+
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          Emails
+
+
+          <table class="text-left w-full text-sm">
+            <thead class="bg-black flex text-white w-full">
+              <tr class="flex w-full mb-1">
+                <th class="p-1.5 w-fit mx-2">Id</th>
+                <th class="p-1.5 w-1/4">Address</th>
+                <th class="p-1.5 w-1/4">Creado</th>
+                <th class="p-1.5 w-1/4">Actualizado</th>
+              </tr>
+
+            </thead>
+            <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" style="height: 50vh;">
+              <tr *ngFor="let address of contactDetail.data.emails" class="flex w-full mb-4 border-b-2">
+                <td class="p-1.5 w-fit mx-2">
+                  {{address.id}}
+                </td>
+
+                <td class="p-1.5 w-1/4">
+                  {{address.email}}
+                </td>
+
+
+                <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
+                <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
+
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div>
+          Telefonos
+
+
+          <table class="text-left w-full text-sm">
+            <thead class="bg-black flex text-white w-full">
+              <tr class="flex w-full mb-1">
+                <th class="p-1.5 w-fit mx-2">Id</th>
+                <th class="p-1.5 w-1/4">Address</th>
+                <th class="p-1.5 w-1/4">Creado</th>
+                <th class="p-1.5 w-1/4">Actualizado</th>
+              </tr>
+
+            </thead>
+            <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" style="height: 50vh;">
+              <tr *ngFor="let address of contactDetail.data.phone_numbers" class="flex w-full mb-4 border-b-2">
+                <td class="p-1.5 w-fit mx-2">
+                  {{address.id}}
+                </td>
+
+                <td class="p-1.5 w-1/4">
+                  {{address.phone_number}}
+                </td>
+
+
+                <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
+                <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
+
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button
+          class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
+          (click)="closeMod()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20"
+            viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
