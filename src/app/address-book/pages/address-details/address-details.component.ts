@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressBookService } from '../../services/addressBook.service';
 import { Contact } from '../../interfaces/contacts.interface';
-import { ContactDetail } from '../../interfaces/contactDetail.interface';
+import { ContactDetail, InfoContact } from '../../interfaces/contactDetail.interface';
 
 @Component({
   selector: 'app-address-details',
@@ -14,6 +14,7 @@ export class AddressDetailsComponent implements OnInit {
 
   public contacts :Contact[] =[];
   public modal : boolean = false;
+
   public contactDetail : ContactDetail = {
     res: "example",
     data: {
@@ -27,6 +28,11 @@ export class AddressDetailsComponent implements OnInit {
     }
   };
 
+  // creamos el modelo para utilizarlo en el input
+  public newAddres: InfoContact = {id:0, contact_id:0, address:"aver", email:"", phone_number:""};
+
+
+  title: string = 'esta es mi vida perros';
 
   constructor(private AddressBookService: AddressBookService) {
   //  this.getAllContact("na");
@@ -68,9 +74,18 @@ export class AddressDetailsComponent implements OnInit {
 
   closeMod(){
     this.modal = false;
-
-    console.log("se cerrara modal");
   }
+
+
+  addAddress(): void{
+
+
+
+    console.log(this.newAddres.address);
+  }
+
+
+
 
 
 }

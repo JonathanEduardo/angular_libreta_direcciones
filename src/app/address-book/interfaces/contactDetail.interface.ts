@@ -8,17 +8,17 @@ export interface Data {
   name:          string;
   created_at:    Date;
   updated_at:    Date;
-  phone_numbers: Address[];
-  emails:        Address[];
-  addresses:     Address[];
+  phone_numbers: InfoContact[];
+  emails:        InfoContact[];
+  addresses:     InfoContact[];
 }
 
-export interface Address {
+export interface InfoContact {
   id:            number;
   contact_id:    number;
   address?:      string;
-  created_at:    Date;
-  updated_at:    Date;
+  created_at?:    Date;
+  updated_at?:    Date;
   email?:        string;
   phone_number?: string;
 }
