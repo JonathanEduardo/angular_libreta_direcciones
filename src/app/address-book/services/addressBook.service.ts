@@ -62,10 +62,10 @@ export class AddressBookService {
   }
 
 
-  addAddress(InfoContact: InfoContact) : Observable <InfoContact> {
+  addAddress(id:number, InfoContact: InfoContact) : Observable <InfoContact> {
 
     const headers = new HttpHeaders().set('x-api-key', this.apiKey);
-    return this.http.put<InfoContact>('dd',InfoContact)
+    return this.http.post<InfoContact>(`${this.apiURL}/addresses`, InfoContact, { headers: headers });
   }
 
 

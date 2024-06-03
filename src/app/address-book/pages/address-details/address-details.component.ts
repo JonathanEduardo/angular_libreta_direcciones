@@ -29,7 +29,7 @@ export class AddressDetailsComponent implements OnInit {
   };
 
   // creamos el modelo para utilizarlo en el input
-  public newAddres: InfoContact = {id:0, contact_id:0, address:"aver", email:"", phone_number:""};
+  public newAddres: InfoContact = { contact_id:0, address:"aver", created_at: new Date(2024,4,30) };
 
 
   title: string = 'esta es mi vida perros';
@@ -57,7 +57,6 @@ export class AddressDetailsComponent implements OnInit {
   detailId(id : number){
     this.modal = true;
 
-
     this.AddressBookService.getDetailsContact(id)
     .subscribe( detalles=> {
       this.contactDetail = detalles;
@@ -66,7 +65,6 @@ export class AddressDetailsComponent implements OnInit {
       //console.log(this.contacts[0].data  );
 
     });
-
 
     console.log(this.contactDetail.data.id);
 
@@ -77,11 +75,27 @@ export class AddressDetailsComponent implements OnInit {
   }
 
 
+
+  /*
+  * ! Metodo para agregar una nueva direccion
+  */
   addAddress(): void{
 
+    //extraemo del detalle el id del contacto actual para ingresarlo a la interfaz de la direccion
+    this.newAddres.contact_id = this.contactDetail.data.id;
+    console.log(this.newAddres);
 
 
-    console.log(this.newAddres.address);
+    this.newAddres.contact_id = this.contactDetail.data.id;
+    this.AddressBookService.addAddress(1, this.newAddres)
+    .subscribe(  info => {
+      console.log("creo que fue un exito");
+    }
+
+    )
+
+
+    //console.log(this.newAddres.address + ' Este es el id del contacto: ' + this.newAddres.contact_id);
   }
 
 

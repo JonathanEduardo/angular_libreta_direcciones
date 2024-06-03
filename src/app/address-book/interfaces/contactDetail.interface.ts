@@ -14,7 +14,7 @@ export interface Data {
 }
 
 export interface InfoContact {
-  id:            number;
+  id?:            number;
   contact_id:    number;
   address?:      string;
   created_at?:    Date;
