@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddressDetailsComponent } from './pages/address-details/address-details.component';
 import { AddressRoutingModule } from './address-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule,
     // importamos las rutas child
-    AddressRoutingModule
+    AddressRoutingModule,
+    FormsModule
   ]
 })
 export class AddressBookModule { }

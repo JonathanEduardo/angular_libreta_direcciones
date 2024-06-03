@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 import { Contact } from '../interfaces/contacts.interface';
-import { ContactDetail } from '../interfaces/contactDetail.interface';
+import { ContactDetail, InfoContact } from '../interfaces/contactDetail.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,13 @@ export class AddressBookService {
     const url : string = `${this.apiURL}/details/${id}`;
     return this.getDetail(url)
 
+  }
+
+
+  addAddress(id:number, InfoContact: InfoContact) : Observable <InfoContact> {
+
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post<InfoContact>(`${this.apiURL}/addresses`, InfoContact, { headers: headers });
   }
 
 
