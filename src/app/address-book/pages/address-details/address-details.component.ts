@@ -13,7 +13,7 @@ export class AddressDetailsComponent implements OnInit {
 
 
   public contacts :Contact[] =[];
-  public modal : boolean = false;
+  public modal : boolean = true;
 
   public contactDetail : ContactDetail = {
     res: "example",
@@ -54,6 +54,7 @@ export class AddressDetailsComponent implements OnInit {
 
   }
 
+  // extrae detalles de contacto por id
   detailId(id : number){
     this.modal = true;
 
@@ -87,9 +88,14 @@ export class AddressDetailsComponent implements OnInit {
 
 
     this.newAddres.contact_id = this.contactDetail.data.id;
-    this.AddressBookService.addAddress(1, this.newAddres)
+    this.AddressBookService.addAddress(this.newAddres.contact_id , this.newAddres)
     .subscribe(  info => {
-      console.log("creo que fue un exito");
+      // actualizar lista de address agregandolo a la lista de contactos
+       // this.contactDetail.data.addresses.push(this.newAddres) tendriamos que r
+       //LLamamod la funcion para actualizar registros del contacto seleccionado
+       this.detailId(this.newAddres.contact_id);
+    
+     
     }
 
     )
