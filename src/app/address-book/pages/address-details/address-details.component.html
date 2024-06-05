@@ -40,13 +40,11 @@
 
   <!-- Modal  {{contactDetail.data.id}} -->
   <div *ngIf="modal"
-    class="py-12  transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0 h-screen "
-    id="modal">
-    
+    class="py-12  transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0 h-screen " id="modal">
+
     <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg h-full">
-     
-      <div class="relative  bg-blue-50 shadow-md rounded border border-gray-700 "
-        style="height: 80%;">
+
+      <div class="relative  bg-blue-50 shadow-md rounded border border-gray-700 " style="height: 80%;">
 
         <div class="bg-gray-700 text-white py-3 px-5 flex flex-row justify-between font-semibold text-xl">
           <span>Detalles de contacto</span>
@@ -59,22 +57,21 @@
 
 
         <section class="py-4 px-5 flex flex-row w-1/2 text-center">
-          <div class="px-1 py-1 border w-1/3 bg-blue-400">Direcciones</div>
-          <div class="px-1 py-1 bg-gray-200 border w-1/3">Emails</div>
-          <div class="px-1 py-1 bg-gray-200 border w-1/3">Telefonos</div>
+          <div class="px-1 py-1  border w-1/3 bg-blue-400" ng-class="{ 'bg-blue-400': tabActual != 'direcciones' }" (click)="swichTab('direcciones')">Direcciones</div>
+          <div class="px-1 py-1 bg-gray-200 border w-1/3" ng-class="{ 'bg-blue-400': tabActual == 'emails' }" (click)="swichTab('emails')">Emails</div>
+          <div class="px-1 py-1 bg-gray-200 border w-1/3" ng-class="{ 'bg-blue-400': tabActual == 'telefonos' }" (click)="swichTab('telefonos')">Telefonos</div>
         </section>
         <!-- body -->
         <div class=" pb-8 px-5 md:px-10 overflow-y-scroll  h-full bg-blue-50">
-          <div>
-           
-  
-  
-           <div class="my-2 flex flex-row gap-3 pb-2">
-            <input type="text" [(ngModel)]="newAddres.address" placeholder="New Address" class="border px-2 py-1 rounded">
-            <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add Address</button>
-  
-           </div>
-  
+
+          <div *ngIf="tabActual == 'direcciones'" >
+            <div class="my-2 flex flex-row gap-3 pb-2">
+              <input type="text" [(ngModel)]="newAddres.address" placeholder="New Address"
+                class="border px-2 py-1 rounded">
+              <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add Address</button>
+
+            </div>
+
             <table class="text-left w-full text-sm">
               <thead class="bg-black flex text-white w-full">
                 <tr class="flex w-full mb-1">
@@ -83,33 +80,33 @@
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
                 </tr>
-  
+
               </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" >
+              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
                 <tr *ngFor="let address of contactDetail.data.addresses" class="flex w-full mb-4 border-b-2">
                   <td class="p-1.5 w-fit mx-2">
                     {{address.id}}
                   </td>
-  
+
                   <td class="p-1.5 w-1/4">
                     {{address.address}}
                   </td>
-  
-  
+
+
                   <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
-  
-  
-  
+
+
+
                 </tr>
               </tbody>
             </table>
           </div>
-  
-          <div>
-            Emails
-  
-  
+
+          <div *ngIf="tabActual == 'emails'" >
+
+
+
             <table class="text-left w-full text-sm">
               <thead class="bg-black flex text-white w-full">
                 <tr class="flex w-full mb-1">
@@ -118,34 +115,34 @@
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
                 </tr>
-  
+
               </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" >
+              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
                 <tr *ngFor="let address of contactDetail.data.emails" class="flex w-full mb-4 border-b-2">
                   <td class="p-1.5 w-fit mx-2">
                     {{address.id}}
                   </td>
-  
+
                   <td class="p-1.5 w-1/4">
                     {{address.email}}
                   </td>
-  
-  
+
+
                   <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
-  
-  
-  
+
+
+
                 </tr>
               </tbody>
             </table>
           </div>
-  
-  
-          <div>
+
+
+          <div *ngIf="tabActual == 'telefonos'">
             Telefonos
-  
-  
+
+
             <table class="text-left w-full text-sm">
               <thead class="bg-black flex text-white w-full">
                 <tr class="flex w-full mb-1">
@@ -154,35 +151,35 @@
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
                 </tr>
-  
+
               </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full" >
+              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
                 <tr *ngFor="let address of contactDetail.data.phone_numbers" class="flex w-full mb-4 border-b-2">
                   <td class="p-1.5 w-fit mx-2">
                     {{address.id}}
                   </td>
-  
+
                   <td class="p-1.5 w-1/4">
                     {{address.phone_number}}
                   </td>
-  
-  
+
+
                   <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
-  
-  
-  
+
+
+
                 </tr>
               </tbody>
             </table>
           </div>
-  
+
         </div>
 
-     
+
 
         <div class="">
-         
+
         </div>
 
       </div>
