@@ -3,6 +3,14 @@
 
   <!-- contact-list.component.html -->
   <div *ngIf=" contacts.length > 0">
+
+    <div class="my-2 flex flex-row gap-3 pb-2">
+      <input type="text" [(ngModel)]="newContact.name" placeholder="New Address"
+        class="border px-2 py-1 rounded">
+      <button (click)="addContact()" class="px-2 py-1 rounded text-white bg-teal-600">Add contact</button>
+
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -57,14 +65,14 @@
 
 
         <section class="py-4 px-5 flex flex-row w-1/2 text-center">
-          <div class="px-1 py-1  border w-1/3 bg-blue-400" ng-class="{ 'bg-blue-400': tabActual != 'direcciones' }" (click)="swichTab('direcciones')">Direcciones</div>
+          <div class="px-1 py-1  border w-1/3 bg-blue-400" ng-class="{ 'bg-blue-400': tabActual != 'addresses' }" (click)="swichTab('addresses')">addresses</div>
           <div class="px-1 py-1 bg-gray-200 border w-1/3" ng-class="{ 'bg-blue-400': tabActual == 'emails' }" (click)="swichTab('emails')">Emails</div>
-          <div class="px-1 py-1 bg-gray-200 border w-1/3" ng-class="{ 'bg-blue-400': tabActual == 'telefonos' }" (click)="swichTab('telefonos')">Telefonos</div>
+          <div class="px-1 py-1 bg-gray-200 border w-1/3" ng-class="{ 'bg-blue-400': tabActual == 'phones' }" (click)="swichTab('phones')">phones</div>
         </section>
         <!-- body -->
         <div class=" pb-8 px-5 md:px-10 overflow-y-scroll  h-full bg-blue-50">
 
-          <div *ngIf="tabActual == 'direcciones'" >
+          <div *ngIf="tabActual == 'addresses'" >
             <div class="my-2 flex flex-row gap-3 pb-2">
               <input type="text" [(ngModel)]="newAddres.address" placeholder="New Address"
                 class="border px-2 py-1 rounded">
@@ -106,6 +114,12 @@
           <div *ngIf="tabActual == 'emails'" >
 
 
+            <div class="my-2 flex flex-row gap-3 pb-2">
+              <input type="text" [(ngModel)]="newAddres.email" placeholder="New Address"
+                class="border px-2 py-1 rounded">
+              <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add email</button>
+
+            </div>
 
             <table class="text-left w-full text-sm">
               <thead class="bg-black flex text-white w-full">
@@ -139,8 +153,14 @@
           </div>
 
 
-          <div *ngIf="tabActual == 'telefonos'">
-            Telefonos
+          <div *ngIf="tabActual == 'phones'">
+            <div class="my-2 flex flex-row gap-3 pb-2">
+              <input type="text" [(ngModel)]="newAddres.phone_number" placeholder="New Address"
+                class="border px-2 py-1 rounded">
+              <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add phone</button>
+
+            </div>
+
 
 
             <table class="text-left w-full text-sm">

@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AddressBookService } from '../../services/addressBook.service';
-import { Contact } from '../../interfaces/contacts.interface';
+import { Contact, Datum } from '../../interfaces/contacts.interface';
 import { ContactDetail, InfoContact } from '../../interfaces/contactDetail.interface';
 
 @Component({
@@ -13,7 +13,7 @@ export class AddressDetailsComponent implements OnInit {
 
 
   public contacts: Contact[] = [];
-  public modal: boolean = true;
+  public modal: boolean = false;
 
   /*
   * Inicializacion de contactoDetail
@@ -36,9 +36,15 @@ export class AddressDetailsComponent implements OnInit {
   * se crea un modelo para utilizarlo en el input
   */
   public newAddres: InfoContact = { contact_id: 0, address: "address", email:"email", phone_number:"(254) 250-8387", created_at: new Date(2024, 4, 30) };
-  public tabActual: string = "direcciones";
+  public tabActual: string = "addresses";
+
+  public newContact: Datum = { id:0, name:"Nombre contacto"};
 
 
+
+  /*
+   * funcion para cambiarla tabulacion
+   */
   swichTab(tabActual : string){
     this.tabActual = tabActual;
   }
@@ -61,8 +67,14 @@ export class AddressDetailsComponent implements OnInit {
       });
   }
 
-  getAllContact(term: string): void {
+  getContacts(term: string): void {
+    this.AddressBookService.getAllContact("term")
+    .subscribe(contacts => {
+      this.contacts = contacts;  // obtenemos el resultado de los contactos
 
+      // onsole.log(this.contacts[0].data.data);
+      //console.log(this.contacts[0].data  );
+    });
   }
 
   /*
@@ -101,13 +113,32 @@ export class AddressDetailsComponent implements OnInit {
 
 
     this.newAddres.contact_id = this.contactDetail.data.id;
-    this.AddressBookService.addAddress(this.newAddres.contact_id, this.newAddres)
+    this.AddressBookService.addAddress(this.newAddres.contact_id, this.newAddres, this.tabActual)
       .subscribe(info => {
         // Actualizar lista de address agregandolo a la lista de contactos
         // this.contactDetail.data.addresses.push(this.newAddres);
 
         //LLamamos la funcion para actualizar registros del contacto seleccionado
         this.detailId(this.newAddres.contact_id);
+
+
+      }
+
+      )
+
+
+    //console.log(this.newAddres.address + ' Este es el id del contacto: ' + this.newAddres.contact_id);
+  }
+
+
+  addContact(): void {
+
+
+    console.log(this.newContact);
+
+    this.AddressBookService.addContact(this.newContact)
+      .subscribe(info => {
+        this.ngOnInit();
 
 
       }

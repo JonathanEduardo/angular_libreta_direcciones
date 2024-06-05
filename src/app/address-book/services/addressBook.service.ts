@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, delay, map, of, tap } from 'rxjs';
-import { Contact } from '../interfaces/contacts.interface';
+import { Contact, Datum } from '../interfaces/contacts.interface';
 import { ContactDetail, InfoContact } from '../interfaces/contactDetail.interface';
 
 @Injectable({
@@ -62,11 +62,17 @@ export class AddressBookService {
   }
 
 
-  addAddress(id:number, InfoContact: InfoContact) : Observable <InfoContact> {
+  addAddress(id:number, InfoContact: InfoContact, endPoint : string) : Observable <InfoContact> {
 
     const headers = new HttpHeaders().set('x-api-key', this.apiKey);
-    return this.http.post<InfoContact>(`${this.apiURL}/addresses`, InfoContact, { headers: headers });
+    return this.http.post<InfoContact>(`${this.apiURL}/${endPoint}`, InfoContact, { headers: headers });
   }
 
+
+  addContact( datosContacto: Datum) : Observable <Datum> {
+
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post<Datum>(`${this.apiURL}/contact/add`, datosContacto, { headers: headers });
+  }
 
 }
