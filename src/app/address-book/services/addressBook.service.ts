@@ -68,11 +68,22 @@ export class AddressBookService {
     return this.http.post<InfoContact>(`${this.apiURL}/${endPoint}`, InfoContact, { headers: headers });
   }
 
+  updateInfo(id:number, InfoContact: InfoContact, endPoint : string) : Observable <InfoContact> {
+
+    console.log("entra al servicio");
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.put<InfoContact>(`${this.apiURL}/${endPoint}/update/${id}`, InfoContact, { headers: headers });
+  }
+
+  
+
 
   addContact( datosContacto: Datum) : Observable <Datum> {
 
     const headers = new HttpHeaders().set('x-api-key', this.apiKey);
     return this.http.post<Datum>(`${this.apiURL}/contact/add`, datosContacto, { headers: headers });
   }
+
+ 
 
 }

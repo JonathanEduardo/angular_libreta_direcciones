@@ -36,6 +36,7 @@ export class AddressDetailsComponent implements OnInit {
   * se crea un modelo para utilizarlo en el input
   */
   public newAddres: InfoContact = { contact_id: 0, address: "address", email:"email", phone_number:"(254) 250-8387", created_at: new Date(2024, 4, 30) };
+ 
   public tabActual: string = "addresses";
 
   public newContact: Datum = { id:0, name:"Nombre contacto"};
@@ -130,6 +131,19 @@ export class AddressDetailsComponent implements OnInit {
     //console.log(this.newAddres.address + ' Este es el id del contacto: ' + this.newAddres.contact_id);
   }
 
+
+  updateInfo():void{
+   
+    this.AddressBookService.updateInfo(7483, this.newAddres, this.tabActual)
+    .subscribe(info => {
+      // Actualizar lista de address agregandolo a la lista de contactos
+      // this.contactDetail.data.addresses.push(this.newAddres);
+
+      //LLamamos la funcion para actualizar registros del contacto seleccionado
+      this.ngOnInit();
+      console.log("creo que se logro");
+    });
+  }
 
   addContact(): void {
 
