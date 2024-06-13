@@ -7,6 +7,10 @@ import { SharedModule } from './shared/shared.module';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 
+// Importaciones de Font Awesome
+import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons'; // Iconos sólidos
+
 
 @NgModule({
   declarations: [
@@ -23,4 +27,4 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {   }

@@ -5,7 +5,7 @@
   <div *ngIf=" contacts.length > 0">
 
     <div class="my-2 flex flex-row gap-3 pb-2">
-      <input type="text" [(ngModel)]="newContact.name" placeholder="New Address"
+      <input type="text" [(ngModel)]="dataContact.name" placeholder="New Address"
         class="border px-2 py-1 rounded">
       <button (click)="addContact()" class="px-2 py-1 rounded text-white bg-teal-600">Add contact</button>
 
@@ -28,9 +28,9 @@
           <td>{{ contact.created_at }}</td>
           <td>{{ contact.updated_at }}</td>
           <td class="flex flex-row gap-2">
-            <button class="bg-blue-600 text-white  rounded-sm px-2 py-.5"> Detalles</button>
-            <button class="bg-indigo-600 text-white  rounded-sm px-2 py-.5"> Agregar </button>
-            <button class="bg-red-600 text-white rounded-sm px-2 py-.5" (click)="detailId( contact.id  )"> Eliminar
+            <button class="btnInfo" (click)="detailId( contact.id  )"> Detalles</button>
+            <button class="btnAdd"> Agregar </button>
+            <button class="btnDelete" > Eliminar
             </button>
           </td>
 
@@ -57,7 +57,7 @@
         <div class="bg-gray-700 text-white py-3 px-5 flex flex-row justify-between font-semibold text-xl">
           <span>Detalles de contacto</span>
 
-          <button (click)="closeMod()" class="bg-red-500 text-white px-1.5 rounded  ">
+          <button (click)="closeMod()" class="btnDelete ">
             X
           </button>
 
@@ -74,10 +74,10 @@
 
           <div *ngIf="tabActual == 'addresses'" >
             <div class="my-2 flex flex-row gap-3 pb-2">
-              <input type="text" [(ngModel)]="newAddres.address" placeholder="New Address"
+              <input type="text" [(ngModel)]="dataInfoContact.address" placeholder="New Address"
                 class="border px-2 py-1 rounded">
-              <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add Address</button>
-              <button (click)="updateInfo()" class="px-2 py-1 rounded text-white bg-orange-600">Update Address</button>
+              <button (click)="addAddress()" class="btnAdd">Add Address</button>
+              <button (click)="updateInfo()" class="btnUpdate">Update Address</button>
 
             </div>
 
@@ -88,6 +88,7 @@
                   <th class="p-1.5 w-1/4">Address</th>
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
+                  <th class="p-1.5 w-1/4">Acciones</th>
                 </tr>
 
               </thead>
@@ -106,6 +107,12 @@
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
 
 
+                  <td>
+                    <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
+                    <button class="btnDelete"> Eliminar</button>
+                  </td>
+
+
 
                 </tr>
               </tbody>
@@ -116,11 +123,11 @@
 
 
             <div class="my-2 flex flex-row gap-3 pb-2">
-              <input type="text" [(ngModel)]="newAddres.email" placeholder="New Address"
+              <input type="text" [(ngModel)]="dataInfoContact.email" placeholder="New Address"
                 class="border px-2 py-1 rounded">
-              <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add email</button>
+              <button (click)="addAddress()" class="btnAdd">Add email</button>
               
-              <button (click)="updateInfo()" class="px-2 py-1 rounded text-white bg-orange-600">Update Address</button>
+              <button (click)="updateInfo()" class="btnDelete">Update Address</button>
 
             </div>
 
@@ -131,6 +138,7 @@
                   <th class="p-1.5 w-1/4">Address</th>
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
+                  <th class="p-1.5 w-1/4">Acciones</th>
                 </tr>
 
               </thead>
@@ -148,6 +156,11 @@
                   <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
 
+                  <td>
+                    <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
+                    <button class="btnDelete"> Eliminar</button>
+                  </td>
+
 
 
                 </tr>
@@ -158,7 +171,7 @@
 
           <div *ngIf="tabActual == 'phones'">
             <div class="my-2 flex flex-row gap-3 pb-2">
-              <input type="text" [(ngModel)]="newAddres.phone_number" placeholder="New Address"
+              <input type="text" [(ngModel)]="dataInfoContact.phone_number" placeholder="New Address"
                 class="border px-2 py-1 rounded">
               <button (click)="addAddress()" class="px-2 py-1 rounded text-white bg-teal-600">Add phone</button>
               
@@ -175,6 +188,7 @@
                   <th class="p-1.5 w-1/4">Address</th>
                   <th class="p-1.5 w-1/4">Creado</th>
                   <th class="p-1.5 w-1/4">Actualizado</th>
+                  <th class="p-1.5 w-1/4">Acciones</th>
                 </tr>
 
               </thead>
@@ -191,6 +205,12 @@
 
                   <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
                   <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
+
+
+                  <td>
+                    <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
+                    <button class="btnDelete"> Eliminar</button>
+                  </td>
 
 
 

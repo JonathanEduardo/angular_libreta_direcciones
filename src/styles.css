@@ -4,3 +4,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.btnDelete{
+    @apply bg-red-500 text-white px-2 py-1 rounded;
+}
+
+.btnAdd{
+    @apply bg-teal-600 text-white px-2 py-1 rounded;
+}
+
+.btnUpdate{
+    @apply bg-orange-600 text-white px-2 py-1 rounded;
+}
+
+.btnInfo{
+    @apply bg-blue-500 text-white px-2 py-1 rounded;
+}

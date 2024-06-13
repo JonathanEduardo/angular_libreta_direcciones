@@ -35,11 +35,9 @@ export class AddressDetailsComponent implements OnInit {
   /*
   * se crea un modelo para utilizarlo en el input
   */
-  public newAddres: InfoContact = { contact_id: 0, address: "address", email:"email", phone_number:"(254) 250-8387", created_at: new Date(2024, 4, 30) };
- 
-  public tabActual: string = "addresses";
-
-  public newContact: Datum = { id:0, name:"Nombre contacto"};
+  public dataInfoContact: InfoContact = { contact_id: 0, address: "address", email:"email", phone_number:"(254) 250-8387", created_at: new Date(2024, 4, 30) };
+  public tabActual: string = "addresses"; // En la barra de opciones indica cual esta activa
+  public dataContact: Datum = { id:0, name:"Nombre contacto"};  //modelo para agregar un nuevo contacto
 
 
 
@@ -109,18 +107,18 @@ export class AddressDetailsComponent implements OnInit {
   addAddress(): void {
 
     //extraemo del detalle el id del contacto actual para ingresarlo a la interfaz de la direccion
-    this.newAddres.contact_id = this.contactDetail.data.id;
-    console.log(this.newAddres);
+    this.dataInfoContact.contact_id = this.contactDetail.data.id;
+    console.log(this.dataInfoContact);
 
 
-    this.newAddres.contact_id = this.contactDetail.data.id;
-    this.AddressBookService.addAddress(this.newAddres.contact_id, this.newAddres, this.tabActual)
+    this.dataInfoContact.contact_id = this.contactDetail.data.id;
+    this.AddressBookService.addAddress(this.dataInfoContact.contact_id, this.dataInfoContact, this.tabActual)
       .subscribe(info => {
         // Actualizar lista de address agregandolo a la lista de contactos
-        // this.contactDetail.data.addresses.push(this.newAddres);
+        // this.contactDetail.data.addresses.push(this.dataInfoContact);
 
         //LLamamos la funcion para actualizar registros del contacto seleccionado
-        this.detailId(this.newAddres.contact_id);
+        this.detailId(this.dataInfoContact.contact_id);
 
 
       }
@@ -128,19 +126,21 @@ export class AddressDetailsComponent implements OnInit {
       )
 
 
-    //console.log(this.newAddres.address + ' Este es el id del contacto: ' + this.newAddres.contact_id);
+    //console.log(this.dataInfoContact.address + ' Este es el id del contacto: ' + this.dataInfoContact.contact_id);
   }
 
+  editInfo(infoContact: InfoContact):void{
+
+    this.dataInfoContact = infoContact;
+    console.log( this.dataInfoContact);
+  }
 
   updateInfo():void{
-   
-    this.AddressBookService.updateInfo(7483, this.newAddres, this.tabActual)
-    .subscribe(info => {
-      // Actualizar lista de address agregandolo a la lista de contactos
-      // this.contactDetail.data.addresses.push(this.newAddres);
 
-      //LLamamos la funcion para actualizar registros del contacto seleccionado
-      this.ngOnInit();
+    this.AddressBookService.updateInfo( this.dataInfoContact.id!,  this.dataInfoContact, this.tabActual)
+    .subscribe(info => {
+     
+      this.detailId(this.dataInfoContact.contact_id);
       console.log("creo que se logro");
     });
   }
@@ -148,9 +148,9 @@ export class AddressDetailsComponent implements OnInit {
   addContact(): void {
 
 
-    console.log(this.newContact);
+    console.log(this.dataContact);
 
-    this.AddressBookService.addContact(this.newContact)
+    this.AddressBookService.addContact(this.dataContact)
       .subscribe(info => {
         this.ngOnInit();
 
@@ -160,7 +160,7 @@ export class AddressDetailsComponent implements OnInit {
       )
 
 
-    //console.log(this.newAddres.address + ' Este es el id del contacto: ' + this.newAddres.contact_id);
+    //console.log(this.dataInfoContact.address + ' Este es el id del contacto: ' + this.dataInfoContact.contact_id);
   }
 
 
