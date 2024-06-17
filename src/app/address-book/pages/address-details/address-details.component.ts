@@ -131,7 +131,16 @@ export class AddressDetailsComponent implements OnInit {
 
   editInfo(infoContact: InfoContact):void{
 
-    this.dataInfoContact = infoContact;
+    // this.dataInfoContact = infoContact;  asi no ya que si bien sirve podria servir para otra cosa ya que es como si apuntaran a la misma informacion
+
+    this.dataInfoContact.id = infoContact.id
+    this.dataInfoContact.contact_id = infoContact.contact_id;
+    this.dataInfoContact.address = infoContact.address;
+    this.dataInfoContact.email = infoContact.email;
+    this.dataInfoContact.phone_number = infoContact.phone_number;
+    this.dataInfoContact.updated_at = new Date();
+
+
     console.log( this.dataInfoContact);
   }
 
@@ -139,7 +148,8 @@ export class AddressDetailsComponent implements OnInit {
 
     this.AddressBookService.updateInfo( this.dataInfoContact.id!,  this.dataInfoContact, this.tabActual)
     .subscribe(info => {
-     
+
+        //LLamamos la funcion para actualizar registros del contacto seleccionado
       this.detailId(this.dataInfoContact.contact_id);
       console.log("creo que se logro");
     });
