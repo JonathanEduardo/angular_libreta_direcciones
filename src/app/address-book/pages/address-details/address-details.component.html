@@ -11,32 +11,39 @@
 
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let contact of this.contacts[0].data.data">
-          <td>{{ contact.id }}</td>
-          <td>{{ contact.name }}</td>
-          <td>{{ contact.created_at }}</td>
-          <td>{{ contact.updated_at }}</td>
-          <td class="flex flex-row gap-2">
-            <button class="btnInfo" (click)="detailId( contact.id  )"> Detalles</button>
-            <button class="btnAdd"> Agregar </button>
-            <button class="btnDelete" > Eliminar
-            </button>
-          </td>
-
-        </tr>
-      </tbody>
-    </table>
+    <div>
+        <button (click)="next(-1)">Prev</button>
+        <button (click)="next(1)">Next</button>
+    </div>
+    <div class="relative overflow-hidden shadow-md rounded-lg">
+      <table class="table-auto w-full text-left">
+        <thead class="uppercase bg-[#164e63] text-[#e5e7eb]" style="background-color: #164e63; color: #e5e7eb;">
+          <tr>
+            <th class="py-3  text-center font-bold p-4" contenteditable="true" >ID</th>
+            <th class="py-3  text-center font-bold p-4" contenteditable="true">Name</th>
+            <th class="py-3  text-center font-bold p-4" contenteditable="true">Created At</th>
+            <th class="py-3  text-center font-bold p-4" contenteditable="true">Updated At</th>
+            <th class="py-3  text-center font-bold p-4" contenteditable="true">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white text-gray-500 bg-[#ededed] text-[#1e3a8a]" style="background-color: #ededed; color: #1e3a8a;">
+          <tr *ngFor="let contact of this.contacts[0].data.data" class="py-4 text-sm">
+            <td class="py-1.5  text-center  p-4" >{{ contact.id }}</td>
+            <td class="py-1.5  text-center  p-4" >{{ contact.name }}</td>
+            <td class="py-1.5  text-center  p-4" >{{ contact.created_at }}</td>
+            <td class="py-1.5  text-center  p-4" >{{ contact.updated_at }}</td>
+            <td class="flex flex-row gap-2 p-4 ">
+              <button class="btnInfo" (click)="detailId( contact.id  )"> Detalles</button>
+              <button class="btnAdd "> Agregar </button>
+              <button class="btnDelete" > Eliminar
+              </button>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+ 
   </div>
   <div *ngIf="contacts.length === 0">
     No contacts found.
@@ -81,42 +88,45 @@
 
             </div>
 
-            <table class="text-left w-full text-sm">
-              <thead class="bg-black flex text-white w-full">
-                <tr class="flex w-full mb-1">
-                  <th class="p-1.5 w-fit mx-2">Id</th>
-                  <th class="p-1.5 w-1/4">Address</th>
-                  <th class="p-1.5 w-1/4">Creado</th>
-                  <th class="p-1.5 w-1/4">Actualizado</th>
-                  <th class="p-1.5 w-1/4">Acciones</th>
-                </tr>
-
-              </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
-                <tr *ngFor="let address of contactDetail.data.addresses" class="flex w-full mb-4 border-b-2">
-                  <td class="p-1.5 w-fit mx-2">
-                    {{address.id}}
-                  </td>
-
-                  <td class="p-1.5 w-1/4">
-                    {{address.address}}
-                  </td>
-
-
-                  <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
-                  <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
-
-
-                  <td>
-                    <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
-                    <button class="btnDelete"> Eliminar</button>
-                  </td>
-
-
-
-                </tr>
-              </tbody>
-            </table>
+            <div class="relative overflow-hidden shadow-md rounded-lg">
+              <table class="text-left w-full text-sm">
+                <thead class="uppercase bg-[#b91c1c] text-[#e5e7eb]" style="background-color: #b91c1c; color: #e5e7eb;">
+                  <tr>
+                    <th class="py-2  text-center font-bold p-4">Id</th>
+                    <th class="py-2  text-center font-bold p-4">Address</th>
+                    <th class="py-2  text-center font-bold p-4">Creado</th>
+                    <th class="py-2  text-center font-bold p-4">Actualizado</th>
+                    <th class="py-2  text-center font-bold p-4">Acciones</th>
+                  </tr>
+  
+                </thead>
+                <tbody class="bg-white text-gray-500 bg-[#ededed] text-[#1e3a8a]" style="background-color: #ededed; color: #1e3a8a;">
+                  <tr *ngFor="let address of contactDetail.data.addresses" class="py-4 text-sm">
+                    <td class="py-1.5  text-center  p-4">
+                      {{address.id}}
+                    </td>
+  
+                    <td class="py-1.5  text-center  p-4">
+                      {{address.address}}
+                    </td>
+  
+  
+                    <td class="py-1.5  text-center  p-4"> {{address.created_at}}</td>
+                    <td class="py-1.5  text-center  p-4">{{address.updated_at}}</td>
+  
+  
+                    <td>
+                      <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
+                      <button class="btnDelete"> Eliminar</button>
+                    </td>
+  
+  
+  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          
           </div>
 
           <div *ngIf="tabActual == 'emails'" >
@@ -131,41 +141,44 @@
 
             </div>
 
-            <table class="text-left w-full text-sm">
-              <thead class="bg-black flex text-white w-full">
-                <tr class="flex w-full mb-1">
-                  <th class="p-1.5 w-fit mx-2">Id</th>
-                  <th class="p-1.5 w-1/4">Address</th>
-                  <th class="p-1.5 w-1/4">Creado</th>
-                  <th class="p-1.5 w-1/4">Actualizado</th>
-                  <th class="p-1.5 w-1/4">Acciones</th>
-                </tr>
-
-              </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
-                <tr *ngFor="let address of contactDetail.data.emails" class="flex w-full mb-4 border-b-2">
-                  <td class="p-1.5 w-fit mx-2">
-                    {{address.id}}
-                  </td>
-
-                  <td class="p-1.5 w-1/4">
-                    {{address.email}}
-                  </td>
-
-
-                  <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
-                  <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
-
-                  <td>
-                    <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
-                    <button class="btnDelete"> Eliminar</button>
-                  </td>
-
-
-
-                </tr>
-              </tbody>
-            </table>
+            <div class="relative overflow-hidden shadow-md rounded-lg">
+              <table class="text-left w-full text-sm">
+                <thead class="uppercase bg-[#b91c1c] text-[#e5e7eb]" style="background-color: #b91c1c; color: #e5e7eb;">
+                  <tr>
+                    <th class="py-2  text-center font-bold p-4">Id</th>
+                    <th class="py-2  text-center font-bold p-4">Email</th>
+                    <th class="py-2  text-center font-bold p-4">Creado</th>
+                    <th class="py-2  text-center font-bold p-4">Actualizado</th>
+                    <th class="py-2  text-center font-bold p-4">Acciones</th>
+                  </tr>
+  
+                </thead>
+                <tbody class="bg-white text-gray-500 bg-[#ededed] text-[#1e3a8a]" style="background-color: #ededed; color: #1e3a8a;">
+                  <tr *ngFor="let address of contactDetail.data.emails" class="py-4 text-sm">
+                    <td class="py-1.5  text-center  p-4">
+                      {{address.id}}
+                    </td>
+  
+                    <td class="py-1.5  text-center  p-4">
+                      {{address.email}}
+                    </td>
+  
+  
+                    <td class="py-1.5  text-center  p-4"> {{address.created_at}}</td>
+                    <td class="py-1.5  text-center  p-4">{{address.updated_at}}</td>
+  
+                    <td class="">
+                      <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
+                      <button class="btnDelete"> Eliminar</button>
+                    </td>
+  
+  
+  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          
           </div>
 
 
@@ -180,34 +193,34 @@
             </div>
 
 
-
+            <div class="relative overflow-hidden shadow-md rounded-lg">
             <table class="text-left w-full text-sm">
-              <thead class="bg-black flex text-white w-full">
-                <tr class="flex w-full mb-1">
-                  <th class="p-1.5 w-fit mx-2">Id</th>
-                  <th class="p-1.5 w-1/4">Address</th>
-                  <th class="p-1.5 w-1/4">Creado</th>
-                  <th class="p-1.5 w-1/4">Actualizado</th>
-                  <th class="p-1.5 w-1/4">Acciones</th>
+              <thead class="uppercase bg-[#b91c1c] text-[#e5e7eb]" style="background-color: #b91c1c; color: #e5e7eb;">
+                <tr>
+                  <th class="py-2  text-center font-bold p-4">Id</th>
+                  <th class="py-2  text-center font-bold p-4">Telefono</th>
+                  <th class="py-2  text-center font-bold p-4">Creado</th>
+                  <th class="py-2  text-center font-bold p-4">Actualizado</th>
+                  <th class="py-2  text-center font-bold p-4">Acciones</th>
                 </tr>
 
               </thead>
-              <tbody class="bg-grey-light flex flex-col items-center  overflow-y-scroll w-full">
-                <tr *ngFor="let address of contactDetail.data.phone_numbers" class="flex w-full mb-4 border-b-2">
-                  <td class="p-1.5 w-fit mx-2">
+              <tbody class="bg-white text-gray-500 bg-[#ededed] text-[#1e3a8a]" style="background-color: #ededed; color: #1e3a8a;">
+                <tr *ngFor="let address of contactDetail.data.phone_numbers" class="py-4 text-sm">
+                  <td class="py-1.5  text-center  p-4">
                     {{address.id}}
                   </td>
 
-                  <td class="p-1.5 w-1/4">
+                  <td class="py-1.5  text-center  p-4">
                     {{address.phone_number}}
                   </td>
 
 
-                  <td class="p-1.5 w-1/4"> {{address.created_at}}</td>
-                  <td class="p-1.5 w-1/4">{{address.updated_at}}</td>
+                  <td class="py-1.5  text-center  p-4"> {{address.created_at}}</td>
+                  <td class="py-1.5  text-center  p-4">{{address.updated_at}}</td>
 
 
-                  <td>
+                  <td class="py-1.5  text-center  p-4">
                     <button class="btnInfo"  (click)="editInfo( address)"> Editar</button>
                     <button class="btnDelete"> Eliminar</button>
                   </td>
@@ -217,6 +230,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
 
         </div>

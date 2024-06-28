@@ -13,6 +13,9 @@ export class AddressDetailsComponent implements OnInit {
 
 
   public contacts: Contact[] = [];
+  public curretPage: number = 0;
+  public lastPage: number = 0;
+  
   public modal: boolean = false;
 
   /*
@@ -57,17 +60,18 @@ export class AddressDetailsComponent implements OnInit {
    * Inicializamos el servicio para traer todos los registros de los contactos
    */
   ngOnInit(): void {
-    this.AddressBookService.getAllContact("term")
+    this.AddressBookService.getAllContact("")
       .subscribe(contacts => {
         this.contacts = contacts;  // obtenemos el resultado de los contactos
-
+        this.curretPage = this.contacts[0].data.current_page;
+        this.lastPage= this.contacts[0].data.last_page;
         // onsole.log(this.contacts[0].data.data);
-        //console.log(this.contacts[0].data  );
+        console.log(this.contacts[0].data.current_page  );
       });
   }
 
   getContacts(term: string): void {
-    this.AddressBookService.getAllContact("term")
+    this.AddressBookService.getAllContact("")
     .subscribe(contacts => {
       this.contacts = contacts;  // obtenemos el resultado de los contactos
 
@@ -175,6 +179,28 @@ export class AddressDetailsComponent implements OnInit {
 
 
 
+  next(goTo:number ) {
+
+    
+
+    if(this.curretPage + goTo >= 0 ){
+
+      console.log(`${this.curretPage} + ${goTo} <= 0 && ${this.curretPage} + ${goTo} <= ${this.lastPage}`);
+      this.curretPage = this.curretPage + goTo;
+      
+
+      this.AddressBookService.getAllContact("?page=" + this.curretPage)
+      .subscribe(contacts => {
+        this.contacts = contacts;  // obtenemos el resultado de los contactos
+  
+        // onsole.log(this.contacts[0].data.data);
+        //console.log(this.contacts[0].data  );
+      });
+      
+    }
+
+
+  }
 
 
 }

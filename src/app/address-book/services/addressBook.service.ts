@@ -49,7 +49,7 @@ export class AddressBookService {
   getAllContact(term : string) : Observable<Contact[]>{
 
 
-    const url : string = `${this.apiURL}/contacts`;
+    const url : string = `${this.apiURL}/contacts${term}`;
     return this.getContact(url)
 
   }
